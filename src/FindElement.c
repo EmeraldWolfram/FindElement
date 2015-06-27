@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 
-Element* listFind(List* list, void* value){
+Element* listFind(List* list, void* value, int(*compare)(void*,void*)){
   Element* tempElement;
 
   if(list == NULL){
@@ -16,11 +16,25 @@ Element* listFind(List* list, void* value){
   else{
     tempElement = list->head;
   
-    printf("head(%d)",*(int*)(tempElement->data));
-    while(tempElement->data != value){
+    printf("head(%X)",*(int*)(tempElement->data));
+    while(compare(tempElement->data,value) != 0){
       tempElement = tempElement->next;
-      printf("->%d", *(int*)(tempElement->data));
+      printf("->%X", *(int*)(tempElement->data));
     }
   }
   return tempElement;
+}
+
+int intCompare(void *first, void *second){
+  if(*((int*)first) == *((int*)second)){
+    return 0;
+  }
+  return 1;
+}
+
+int stringCompare(void *first, void *second){
+  if(strcmp((char*)first,(char*)second) == 0){
+    return 0;
+  }
+  return 1;
 }
