@@ -2,6 +2,7 @@
 #include "SimpleList.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 Element* listFind(List* list, void* value, int(*compare)(void*,void*)){

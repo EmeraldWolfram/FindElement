@@ -17,23 +17,23 @@ void test_findElement_given_integer(void){
   List* list = listCreate();
   Element* elem, * elemNext;
   
-  elem = elementCreate(&value4);
-  elemNext = elementCreate(&value6);
-  elem->next = elemNext;
-  elemNext = elem;
+  elem      = elementCreate(&value4);
+  elemNext  = elementCreate(&value6);
+  elem->next= elemNext;                     //(4) -> (6)
+  elemNext  = elem;
   
-  elem = elementCreate(&value1);
-  elem->next = elemNext;
-  elemNext = elem;
+  elem      = elementCreate(&value1);
+  elem->next= elemNext;                     //(1) -> (4) -> (6)
+  elemNext  = elem;
 
   elem = elementCreate(&value7);
-  elem->next = elemNext;
+  elem->next = elemNext;                    // (7) -> (1) -> (4) -> (6)
   elemNext = elem;
   
   elem = elementCreate(&value3);
-  elem->next = elemNext;
+  elem->next = elemNext;                    // (3) -> (7) -> (1) -> (4) -> (6)
   elemNext = elem;  
-  list->head = elem;
+  list->head = elem;                        // head(3) -> (7) -> (1) -> (4) -> (6)
   
   elem = NULL;
   elem = listFind(list, &myValue1, intCompare);
